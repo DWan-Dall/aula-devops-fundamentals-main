@@ -1,0 +1,20 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-devOps
+    volumes:
+      - ./src:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/default.conf
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+    restart: always # Opcional, mas útil para reiniciar o container automaticamente caso ele pare
+
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pgdata:
